@@ -1,4 +1,4 @@
-using BeatLeader.Components;
+﻿using BeatLeader.Components;
 using BeatLeader.Manager;
 using BeatLeader.Models;
 using BeatSaberMarkupLanguage.Attributes;
@@ -78,6 +78,7 @@ namespace BeatLeader.ViewControllers {
             LeaderboardEvents.ScoreInfoButtonWasPressed += PresentScoreInfoModal;
             LeaderboardEvents.LeaderboardSettingsButtonWasPressedEvent += PresentSettingsModal;
             LeaderboardEvents.LogoWasPressedEvent += PresentBeatLeaderInfoModal;
+            LeaderboardEvents.PrestigeWasPressedEvent += PrestigeModal;
             LeaderboardEvents.VotingWasPressedEvent += PresentVotingModal;
             LeaderboardEvents.ContextSelectorWasPressedAction += PresentContextsModal;
             LeaderboardState.IsVisible = true;
@@ -87,6 +88,7 @@ namespace BeatLeader.ViewControllers {
             LeaderboardEvents.ScoreInfoButtonWasPressed -= PresentScoreInfoModal;
             LeaderboardEvents.LeaderboardSettingsButtonWasPressedEvent -= PresentSettingsModal;
             LeaderboardEvents.LogoWasPressedEvent -= PresentBeatLeaderInfoModal;
+            LeaderboardEvents.PrestigeWasPressedEvent -= PrestigeModal;
             LeaderboardEvents.VotingWasPressedEvent -= PresentVotingModal;
             LeaderboardEvents.ContextSelectorWasPressedAction -= PresentContextsModal;
             LeaderboardState.IsVisible = false;
@@ -106,6 +108,10 @@ namespace BeatLeader.ViewControllers {
 
         private void PresentBeatLeaderInfoModal() {
             ReeModalSystem.OpenModal<BeatLeaderInfo>(transform, 0);
+        }
+
+        private void PrestigeModal() {
+            ReeModalSystem.OpenModal<Prestige>(transform, 0);
         }
 
         private void PresentVotingModal() {

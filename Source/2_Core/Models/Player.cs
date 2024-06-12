@@ -24,6 +24,9 @@ namespace BeatLeader.Models {
         public float pp { get; set; }
         public int rank { get; set; }
         public int countryRank { get; set; }
+        public int level { get; set; }
+        public int experience { get; set; }
+        public int prestige { get; set; }
     }
 
     public class PlayerContextExtension : IPlayer {
@@ -33,6 +36,9 @@ namespace BeatLeader.Models {
         public int rank { get; set; }
         public string country { get; set; }
         public int countryRank { get; set; }
+        public int level { get; set; }
+        public int experience { get; set; }
+        public int prestige { get; set; }
     }
 
     public class Player : IPlayer {
@@ -42,6 +48,9 @@ namespace BeatLeader.Models {
         public string? avatar;
         public string country { get; set; }
         public int countryRank { get; set; }
+        public int level { get; set; }
+        public int experience { get; set; }
+        public int prestige { get; set; }
         public float pp { get; set; }
         public string role;
         public Clan[] clans;
@@ -57,6 +66,9 @@ namespace BeatLeader.Models {
                 return new Player {
                     id = this.id,
                     rank = contextPlayer.rank,
+                    level = this.level,
+                    experience = this.experience,
+                    prestige = this.prestige,
                     name = this.name,
                     avatar = this.avatar,
                     country = this.country,

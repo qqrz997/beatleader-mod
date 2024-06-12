@@ -52,10 +52,13 @@ namespace BeatLeader.Utils {
             }
 
             SaveReplay(replay, data);
-            
+
             static void SaveReplay(Replay replay, PlayEndData data) {
                 _ = ReplayManager.Instance.SaveReplayAsync(replay, data, default);
             }
+
+            // TODO: To fetch and refresh the header values, this could be done more optimally
+            UserRequest.SendRequest();
         }
 
         public static void UploadReplay(Replay replay) {

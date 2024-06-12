@@ -242,6 +242,22 @@ namespace BeatLeader {
 
         #endregion
 
+        #region FormatLevel
+
+        public static string FormatLevel(int level) {
+            return $"{("<size=70%>Lvl:</size>")}{level}";
+        }
+
+        #endregion
+
+        #region FormatExperience
+
+        public static string FormatExperience(float experience) {
+            return $"<size=80%>{(experience * 100):F2}<size=60%>%";
+        }
+
+        #endregion
+
         #region FormatUsername
 
         public static string FormatUserName(string userName) {

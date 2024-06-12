@@ -149,6 +149,16 @@ namespace BeatLeader.Manager {
 
         #endregion
 
+        #region PrestigeWasPressed
+
+        public static event Action PrestigeWasPressedEvent;
+
+        public static void NotifyPrestigeWasPressed() {
+            PrestigeWasPressedEvent?.Invoke();
+        }
+
+        #endregion
+
         #region VotingWasPressed
 
         public static event Action VotingWasPressedEvent;

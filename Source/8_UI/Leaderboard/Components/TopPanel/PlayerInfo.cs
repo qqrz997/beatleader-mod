@@ -1,7 +1,9 @@
 ﻿using BeatLeader.API.Methods;
+using BeatLeader.Manager;
 using BeatLeader.Models;
 using BeatSaberMarkupLanguage.Attributes;
 using JetBrains.Annotations;
+using System;
 
 namespace BeatLeader.Components {
     internal class PlayerInfo : ReeUIComponentV2 {
@@ -84,6 +86,11 @@ namespace BeatLeader.Components {
             GlobalRankText = FormatUtils.FormatRank(contextPlayer.rank, true);
             CountryRankText = FormatUtils.FormatRank(contextPlayer.countryRank, true);
             PpText = FormatUtils.FormatPP(contextPlayer.pp);
+            LevelText = FormatUtils.FormatLevel(player.level);
+            var reqExp = 1000 * (player.level + 1);
+            var percentage = (float)player.experience / reqExp;
+            ExpText = FormatUtils.FormatExperience(percentage);
+
             StatsActive = true;
         }
 
@@ -91,6 +98,13 @@ namespace BeatLeader.Components {
 
         private void ChangeScoreContext(ScoresContext context) {
             OnProfileUpdated(user.player);
+        }
+
+        private void OnPrestigeClicked() {
+            var reqLevel = 1000d * Math.Pow(2d, user.player.prestige * 1.2d);
+            if (user.player.level >= reqLevel) {
+                LeaderboardEvents.NotifyLogoWasPressed();
+            }
         }
 
         #region StatsActive
@@ -170,6 +184,41 @@ namespace BeatLeader.Components {
                 NotifyPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region LevelText
+
+        private string _levelText = "";
+
+        [UIValue("level-text"), UsedImplicitly]
+        public string LevelText {
+            get => _levelText;
+            set {
+                if (_levelText.Equals(value)) return;
+                _levelText = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region ExpText
+
+        private string _expText = "";
+
+        [UIValue("exp-text"), UsedImplicitly]
+        public string ExpText {
+            get => _expText;
+            set {
+                if (_expText.Equals(value)) return;
+                _expText = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        [UIAction("prestige-on-click")]
+        private void PrestigeAction() => OnPrestigeClicked();
 
         #endregion
     }

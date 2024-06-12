@@ -1,4 +1,4 @@
-<vertical pref-width="70">
+﻿<vertical pref-width="70">
     <horizontal pref-height="14" spacing="2">
         <vertical pref-width="54">
             <horizontal>
@@ -6,6 +6,12 @@
             </horizontal>
 
             <horizontal active="~stats-active" spacing="4" pref-height="4" horizontal-fit="PreferredSize">
+                <horizontal pref-height="4">
+                    <text text="~level-text" align="Center"/>
+                </horizontal>
+                <horizontal pref-height="4" spacing="1">
+                    <clickable-text text="~exp-text" align="Center" on-click="prestige-on-click"/>
+                </horizontal>
                 <horizontal pref-height="4" spacing="1">
                     <image src="#GlobalIcon" pref-height="4" pref-width="4" preserve-aspect="true"/>
                     <text text="~global-rank-text" align="Midline"/>
