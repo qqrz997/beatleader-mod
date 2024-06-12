@@ -14,12 +14,16 @@ namespace BeatLeader.Components {
 
         [UIValue("country-flag"), UsedImplicitly]
         private CountryFlag _countryFlag;
+        
+        [UIValue("experience-bar"), UsedImplicitly]
+        private PrestigeExperienceBar _experienceBar;
 
         private User user;
 
         private void Awake() {
             _avatar = Instantiate<PlayerAvatar>(transform);
             _countryFlag = Instantiate<CountryFlag>(transform);
+            _experienceBar = Instantiate<PrestigeExperienceBar>(transform);
         }
 
         #endregion
@@ -86,10 +90,6 @@ namespace BeatLeader.Components {
             GlobalRankText = FormatUtils.FormatRank(contextPlayer.rank, true);
             CountryRankText = FormatUtils.FormatRank(contextPlayer.countryRank, true);
             PpText = FormatUtils.FormatPP(contextPlayer.pp);
-            LevelText = FormatUtils.FormatLevel(player.level);
-            var reqExp = 1000 * (player.level + 1);
-            var percentage = (float)player.experience / reqExp;
-            ExpText = FormatUtils.FormatExperience(percentage);
 
             StatsActive = true;
         }
@@ -184,41 +184,6 @@ namespace BeatLeader.Components {
                 NotifyPropertyChanged();
             }
         }
-
-        #endregion
-
-        #region LevelText
-
-        private string _levelText = "";
-
-        [UIValue("level-text"), UsedImplicitly]
-        public string LevelText {
-            get => _levelText;
-            set {
-                if (_levelText.Equals(value)) return;
-                _levelText = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        #endregion
-
-        #region ExpText
-
-        private string _expText = "";
-
-        [UIValue("exp-text"), UsedImplicitly]
-        public string ExpText {
-            get => _expText;
-            set {
-                if (_expText.Equals(value)) return;
-                _expText = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        [UIAction("prestige-on-click")]
-        private void PrestigeAction() => OnPrestigeClicked();
 
         #endregion
     }

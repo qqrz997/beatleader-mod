@@ -1,0 +1,9 @@
+<vertical pref-width="50">
+    <horizontal pref-height="6" pad-top="1">
+        <text id="prev-level-text" font-size="3.5" align="Center"/>
+        <!---->
+        <image id="bar" pref-height="5" pref-width="44"/>
+        <!---->
+        <text id="next-level-text" font-size="3.5" align="Center"/>
+    </horizontal>
+</vertical>
